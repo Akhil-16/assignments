@@ -17,53 +17,56 @@
 */
 
 class Calculator {
-  constructor(){
+    constructor(){
+      this.result=0
+    }
+    add(number){
+    this.result=this.result+number
+  }
+  subtract(number){
+    this.result=this.result-number
+  }
+  multiply(number){
+  this.result=this.result*number
+  }
+  clear(){
     this.result=0
   }
-  add(number){
-  this.result=this.result+number
-}
-subtract(number){
-  this.result=this.result-number
-}
-multiply(number){
-this.result=this.result*number
-}
-clear(){
-  this.result=0
-}
-divide(num) {
-  if (typeof num === "number" && num !== 0) {
-    this.result /= num;
-  } else {
-    throw new Error("Invalid number");
+  divide(number){
+    if (number === 0) {
+      throw new Error("Cannot divide by zero");
   }
-}
-
-getResult(){
-  return this.result
-
-}
-calculate(expression){
-  const sanitizedExpression = expression.replace(/\s/g, '');
-
- 
-  try {
-      this.result = eval(sanitizedExpression);
-  } catch (error) {
-      throw new Error('Invalid expression');
+  this.result /= number;
   }
-
-  return this.result;
-
-}
-
-
-
-}
-
+  getResult(){
+    return this.result
+  
+  }
+  calculate(expression){
+    const sanitizedExpression = expression.replace(/\s+/g, '');
+  
+   
+    try {
+        this.result = eval(sanitizedExpression);
+    } catch (error) {
+        throw new Error('Invalid expression');
+    }
+  
+    return this.result;
+  
+  }
+  
+  
+  
+  }
+  
+   
+  
+  
+  
  
+  
 
-
-
-module.exports = Calculator;
+  const obj=new Calculator
+  obj.calculate('2 + 3 * 4')
+ console.log( obj.getResult())
